@@ -1,6 +1,18 @@
 # Aerial-cable-towed-system-carrying-flexible-payloads
 This repository is the ROS2 Gazebo simulation part of my master thesis, named 'Modelling, Simulation, and Control of a Novel Aerial Cable Towed System for Agile Operation'.  The research is funded by Laboratoire des Sciences du Numerique de Nantes (LS2N), under the supervision of prof. Stéphane CARO and Abdelhamid CHRIETTE.  This project is done with the framework of ls2n_drone_ros2 (https://univ-nantes.io/ls2n-drones/ls2n_drone_ros2/). 
 
+Initial configuration
+--------------------------
+![initial configuration](https://user-images.githubusercontent.com/48424839/205446651-e6bacd14-bf5c-46df-937d-69cca86d3e18.png)
+
+Take off
+--------------------------
+![take off](https://user-images.githubusercontent.com/48424839/205446677-db48a5c6-091a-417a-8fd6-8bd1769df24d.png)
+
+
+Carrying payloads
+--------------------------
+![Carrying payloads](https://user-images.githubusercontent.com/48424839/205446692-ec80cb74-436b-4524-85c8-346ae49823a2.png)
 
 
 ls2n_drone_ros2
