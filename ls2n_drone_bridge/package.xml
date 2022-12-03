@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>ls2n_drone_bridge</name>
+  <version>0.0.0</version>
+  <description>ROS2 bridge with LS2N drones</description>
+  <maintainer email="damien.six@ls2n.fr">Damien Six</maintainer>
+  <license>Apache 2.0</license>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+
+  <build_depend>python3-jinja2</build_depend>
+  <build_depend>python3-toml</build_depend>
+  <build_depend>libgstreamer-plugins-base1.0-dev</build_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>px4_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>ls2n_interfaces</exec_depend>
+  <exec_depend>ls2n_px4_ros_com</exec_depend>
+  <exec_depend>ls2n_drone_onboard</exec_depend>
+  <exec_depend>gazebo</exec_depend>
+  <exec_depend>gazebo_ros_pkgs</exec_depend>
+</package>

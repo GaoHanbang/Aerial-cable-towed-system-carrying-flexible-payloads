@@ -1,0 +1,17 @@
+<library path="ls2n_rqt_fake_joystick">
+    <class name="FakeJoystick" type="ls2n_rqt_fake_joystick.fake_joystick.FakeJoystick" base_class_type="rqt_gui_py::Plugin">
+        <description>
+            A plugin to simulate a fake joystick.
+        </description>
+        <qtgui>
+            <group>
+                <label>LS2N</label>
+                <icon type="theme">folder</icon>
+                <statustip>LS2N Plugins</statustip>
+            </group>
+            <label>Fake Joystick</label>
+            <icon type="theme">applications-engineering</icon>
+            <statustip>A plugin to simulate a fake joystick.</statustip>
+        </qtgui>
+    </class>
+</library>

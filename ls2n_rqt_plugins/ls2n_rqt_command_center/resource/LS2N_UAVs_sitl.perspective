@@ -1,0 +1,177 @@
+{
+  "keys": {},
+  "groups": {
+    "mainwindow": {
+      "keys": {
+        "geometry": {
+          "repr(QByteArray.hex)": "QtCore.QByteArray(b'01d9d0cb0003000000000064000000640000031500000264000000640000008900000315000002640000000000000000078000000064000000890000031500000264')",
+          "type": "repr(QByteArray.hex)",
+          "pretty-print": "     d d   d d     d      d     d"
+        },
+        "state": {
+          "repr(QByteArray.hex)": "QtCore.QByteArray(b'000000ff00000000fd0000000200000002000002b2000001b0fc0100000001fc00000000000002b2000001ad00fffffffc0200000002fc00000016000000570000005100fffffffc0100000003fb00000072006c00730032006e005f007200710074005f0063006f006d006d0061006e0064005f00630065006e007400650072005f005f0043006f006d006d0061006e0064002000430065006e007400650072005f005f0031005f005f0043006f006d006d0061006e006400430065006e007400650072010000000000000193000000e800fffffffb00000044006c00730032006e005f007200710074005f00640065006c006100790073005f005f00440065006c006100790073005f005f0031005f005f00440065006c006100790073010000019900000119000000bf00fffffffb00000044006c00730032006e005f007200710074005f00640065006c006100790073005f005f00440065006c006100790073005f005f0032005f005f00440065006c00610079007301000001a4000001a50000000000000000fb0000006a006c00730032006e005f007200710074005f00660061006b0065005f006a006f00790073007400690063006b005f005f00460061006b0065004a006f00790073007400690063006b005f005f0031005f005f00460061006b0065004a006f00790073007400690063006b0100000073000001530000005e00ffffff000000030000034900000051fc0100000005fb00000030005f005f0044006f0063006b0057006900640067006500740043006f006e007400610069006e00650072005f005f00310100000000000002580000000000000000fb00000050007200710074005f0061006300740069006f006e005f005f0041006300740069006f006e0050006c007500670069006e005f005f0031005f005f006d0065007300730061006700650073002e0075006901000000fd0000025f0000000000000000fb0000006c007200710074005f007200650063006f006e006600690067007500720065005f005f0050006100720061006d005f005f0031005f005f005f0070006c007500670069006e0063006f006e007400610069006e00650072005f0074006f0070005f0077006900640067006500740100000153000005e50000000000000000fb00000050006c00730032006e005f007200710074005f00640065006c006100790073005f005f00440065006c006100790073005f005f0031005f005f00460061006b0065004a006f00790073007400690063006b01000000000000040f0000000000000000fb00000072006c00730032006e005f007200710074005f0063006f006d006d0061006e0064005f00630065006e007400650072005f005f0043006f006d006d0061006e0064002000430065006e007400650072005f005f0032005f005f0043006f006d006d0061006e006400430065006e0074006500720100000000000003490000000000000000000002b20000000000000004000000040000000800000008fc00000001000000030000000100000036004d0069006e0069006d0069007a006500640044006f0063006b00570069006400670065007400730054006f006f006c0062006100720000000000ffffffff0000000000000000')",
+          "type": "repr(QByteArray.hex)",
+          "pretty-print": "                                        rls2n_rqt_command_center__Command Center__1__CommandCenter          Dls2n_rqt_delays__Delays__1__Delays          Dls2n_rqt_delays__Delays__2__Delays          jls2n_rqt_fake_joystick__FakeJoystick__1__FakeJoystick                   0__DockWidgetContainer__1          Prqt_action__ActionPlugin__1__messages.ui          lrqt_reconfigure__Param__1___plugincontainer_top_widget          Pls2n_rqt_delays__Delays__1__FakeJoystick          rls2n_rqt_command_center__Command Center__2__CommandCenter                            6MinimizedDockWidgetsToolbar        "
+        }
+      },
+      "groups": {
+        "toolbar_areas": {
+          "keys": {
+            "MinimizedDockWidgetsToolbar": {
+              "repr": "8",
+              "type": "repr"
+            }
+          },
+          "groups": {}
+        }
+      }
+    },
+    "pluginmanager": {
+      "keys": {
+        "running-plugins": {
+          "repr": "{'ls2n_rqt_command_center/Command Center': [1], 'ls2n_rqt_delays/Delays': [1], 'ls2n_rqt_fake_joystick/FakeJoystick': [1]}",
+          "type": "repr"
+        }
+      },
+      "groups": {
+        "plugin__ls2n_rqt_command_center__Command Center__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__CommandCenter": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'Command Center'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "True",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__ls2n_rqt_delays__Delays__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__Delays": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'Delays'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "True",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__FakeJoystick": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'Fake Joystick'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__ls2n_rqt_delays__Delays__2": {
+          "keys": {},
+          "groups": {
+            "dock_widget__Delays": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'Command Center'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__ls2n_rqt_fake_joystick__FakeJoystick__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__FakeJoystick": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'Fake Joystick'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "True",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__rqt_reconfigure__Param__1": {
+          "keys": {},
+          "groups": {
+            "plugin": {
+              "keys": {
+                "_splitter": {
+                  "repr(QByteArray.hex)": "QtCore.QByteArray(b'000000ff00000001000000020000012c000000640100000009010000000200')",
+                  "type": "repr(QByteArray.hex)",
+                  "pretty-print": "       , d     "
+                },
+                "expanded_nodes": {
+                  "repr": "None",
+                  "type": "repr"
+                },
+                "selected_nodes": {
+                  "repr": "None",
+                  "type": "repr"
+                },
+                "splitter": {
+                  "repr(QByteArray.hex)": "QtCore.QByteArray(b'000000ff0000000100000002000000ae0000006401ffffffff010000000100')",
+                  "type": "repr(QByteArray.hex)",
+                  "pretty-print": "         d     "
+                },
+                "text": {
+                  "repr": "''",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

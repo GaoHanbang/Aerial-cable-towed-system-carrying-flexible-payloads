@@ -1,0 +1,17 @@
+<library path="ls2n_rqt_thrust_to_mot">
+    <class name="ThrustToMotors" type="ls2n_rqt_thrust_to_mot.thrust_to_mot.ThrustToMotors" base_class_type="rqt_gui_py::Plugin">
+        <description>
+            A plugin to check the relation between desired thrust and motor outputs.
+        </description>
+        <qtgui>
+            <group>
+                <label>LS2N</label>
+                <icon type="theme">folder</icon>
+                <statustip>LS2N Plugins</statustip>
+            </group>
+            <label>Thrust to motors</label>
+            <icon type="theme">utilities-system-monitor</icon>
+            <statustip>A plugin to check the relation between desired thrust and motor outputs.</statustip>
+        </qtgui>
+    </class>
+</library>

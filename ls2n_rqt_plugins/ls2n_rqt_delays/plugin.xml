@@ -1,0 +1,17 @@
+<library path="ls2n_rqt_delays">
+    <class name="Delays" type="ls2n_rqt_delays.delays.Delays" base_class_type="rqt_gui_py::Plugin">
+        <description>
+            A plugin to compute UAV delays.
+        </description>
+        <qtgui>
+            <group>
+                <label>LS2N</label>
+                <icon type="theme">folder</icon>
+                <statustip>LS2N Plugins</statustip>
+            </group>
+            <label>Delays</label>
+            <icon type="theme">utilities-system-monitor</icon>
+            <statustip>A plugin to compute UAV delays.</statustip>
+        </qtgui>
+    </class>
+</library>

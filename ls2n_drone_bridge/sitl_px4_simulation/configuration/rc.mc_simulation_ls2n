@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# LS2N simulation parameters
+#
+# shellcheck disable=SC2154
+
+param set THR_MDL_FAC 1.0
+
+param set EKF2_AID_MASK 24
+param set EKF2_EVP_NOISE 0.01
+param set EKF2_EV_NOISE_MD 1
+param set EKF2_EVV_NOISE 0.01
+param set EKF2_EV_DELAY 1.0
+param set EKF2_GPS_CHECK 0
+param set EKF2_HGT_MODE 3
+param set EKF2_REQ_GPS_H 10.0
+param set EKF2_RNG_AID 0
+
+param set COM_RC_IN_MODE 1
+param set COM_OBL_ACT 4
+param set COM_OBL_RC_ACT 7
+param set COM_OF_LOSS_T 0.1
+param set NAV_RCL_ACT 0
+param set COM_RC_OVERRIDE 0
+

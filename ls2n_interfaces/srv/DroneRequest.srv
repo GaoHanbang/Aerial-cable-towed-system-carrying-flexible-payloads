@@ -1,0 +1,14 @@
+int8 SPIN_MOTORS=0
+int8 TAKE_OFF=1
+int8 LAND=2
+int8 RATES_THRUST_CONTROL=4
+int8 ATTITUDE_THRUST_CONTROL=5
+int8 ACCELERATION_CONTROL=6
+int8 VELOCITY_CONTROL=7
+int8 POSITION_CONTROL=8
+int8 LAST =9 # Should be kept as last value
+
+int8 request
+---
+bool success False
+string message

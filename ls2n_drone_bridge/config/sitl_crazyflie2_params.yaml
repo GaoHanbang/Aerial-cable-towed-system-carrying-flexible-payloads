@@ -1,0 +1,14 @@
+drone_bridge:
+  ros__parameters:
+    firmware: "PX4"
+    mass: 0.032
+    max_thrust: 0.56
+    # Max thrust can be a linear function of the battery voltage (V): max_thrust = a * V + b
+    use_battery_for_thrust: false
+
+    # Position/velocity PID gains
+    kp: 3.0
+    kd: 2.0
+    ki: 0.1
+
+    take_off_height: 1.0

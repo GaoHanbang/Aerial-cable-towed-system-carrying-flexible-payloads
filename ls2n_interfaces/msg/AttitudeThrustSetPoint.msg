@@ -1,0 +1,3 @@
+std_msgs/Header header
+geometry_msgs/Quaternion attitude
+float64 thrust

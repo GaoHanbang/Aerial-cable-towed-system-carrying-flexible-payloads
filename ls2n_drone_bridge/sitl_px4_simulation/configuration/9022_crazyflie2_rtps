@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# @name 3DR Crazyflie2.1 Quadrotor SITL (RTPS)
+#
+# @type Quadrotor Wide
+#
+
+. ${R}etc/init.d-posix/airframes/9021_crazyflie2

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FakeJoystick</class>
+ <widget class="QWidget" name="Delays">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>226</width>
+    <height>100</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Delays</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>1</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="Hlayout2">
+     <item>
+      <widget class="QProgressBar" name="rtps_delay_bar">
+       <property name="value">
+        <number>100</number>
+       </property>
+       <property name="format">
+        <string>%p ms</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>RTPS Delay</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Hlayout3">
+     <item>
+      <widget class="QProgressBar" name="wifi_delay_bar">
+       <property name="value">
+        <number>100</number>
+       </property>
+       <property name="format">
+        <string>%p ms</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>WIFI Delay</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

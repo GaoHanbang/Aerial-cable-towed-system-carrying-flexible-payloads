@@ -1,0 +1,15 @@
+drone_bridge:
+  ros__parameters:
+    firmware: "PX4"
+    mass: 1.0
+    max_thrust: 47.0
+    use_battery_for_thrust: false
+
+    # Position/velocity PID gains
+    kp_position: 3.0
+    kd_position: 1.5
+    ki_position: 0.0
+    kp_velocity: 2.0
+    ki_velocity: 0.1
+
+    take_off_height: 1.0

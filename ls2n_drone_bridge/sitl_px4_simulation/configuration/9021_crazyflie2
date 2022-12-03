@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# @name Bitcraze Crazyflie2.1
+#
+# @type + Quadrotor +
+#
+# @maintainer Damien Six <damien.six@ls2n.fr>
+#
+
+. ${R}etc/init.d/rc.mc_defaults
+. ${R}etc/init.d-posix/rc.mc_simulation_ls2n
+
+param set MC_ROLLRATE_K 1.0
+param set MC_ROLLRATE_D 0.00
+param set MC_ROLLRATE_I 0.1
+param set MC_ROLLRATE_P 0.05
+param set MC_ROLL_P 5.0
+param set MC_PITCHRATE_K 1.0
+param set MC_PITCHRATE_D 0.000
+param set MC_PITCHRATE_I 0.1
+param set MC_PITCHRATE_P 0.05
+param set MC_PITCH_P 5.0
+param set MC_YAWRATE_K 1.0
+param set MC_YAWRATE_D 0.000
+param set MC_YAWRATE_I 0.2
+param set MC_YAWRATE_P 0.2
+param set MC_YAW_P 0.5
+
+set MIXER quad_+

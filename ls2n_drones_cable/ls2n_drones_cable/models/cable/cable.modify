@@ -1,0 +1,377 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+<model name='cable'>
+    
+ 
+
+         <link name='bar'>
+            <self_collide>0</self_collide>
+            <pose> 0.5 0 0 0 -1.57079632679 0</pose>
+            <inertial>
+                <pose>0 0 0 0 1.57079632679 0</pose>
+                <mass>0.0588</mass>
+                <inertia>
+                <ixx>0.00012331124399999997</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.00012331124399999997</iyy>
+                <iyz>0</iyz>
+                <izz>7.350000000000001e-07</izz>
+                </inertia>
+            </inertial>
+            <collision name='bar_link_collision'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                <cylinder>
+                    <length>0.99</length>
+                    <radius>0.005</radius>
+                </cylinder>
+                </geometry>
+            </collision>
+            <visual name='bar_link_visual'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                <cylinder>
+                    <length>0.99</length>
+                    <radius>0.005</radius>
+                </cylinder>
+                </geometry>
+                <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/White</name>
+                </script>
+                </material>
+            </visual>
+        </link>
+
+
+
+ 
+    
+        <link name='node_link_1_1'>
+            <self_collide>0</self_collide>
+            <pose> 0.0 0.0 0 0 0 0 </pose>
+            <inertial>
+                <pose>0 0 0 0 -0 0</pose>
+                <mass>0.001</mass>
+                <inertia>
+                    <ixx>1.0e-08</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>1.0e-08</iyy>
+                    <iyz>0</iyz>
+                    <izz>1.0e-08</izz>
+                </inertia>
+            </inertial>
+            <collision name='node_link_1_1_collision'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <sphere>
+                    <radius>0.005</radius>
+                    </sphere>
+                </geometry>
+            </collision>
+            <visual name='node_link_1_1_visual'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <sphere>
+                    <radius>0.005</radius>
+                    </sphere>
+                </geometry>
+                <material>
+                    <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/Blue</name>
+                    </script>
+                </material>
+            </visual>
+        </link>
+
+    
+ 
+    
+        <link name='node_link_2_1'>
+            <self_collide>0</self_collide>
+            <pose> 1.0 0.0 0 0 0 0 </pose>
+            <inertial>
+                <pose>0 0 0 0 -0 0</pose>
+                <mass>0.001</mass>
+                <inertia>
+                    <ixx>1.0e-08</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>1.0e-08</iyy>
+                    <iyz>0</iyz>
+                    <izz>1.0e-08</izz>
+                </inertia>
+            </inertial>
+            <collision name='node_link_2_1_collision'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <sphere>
+                    <radius>0.005</radius>
+                    </sphere>
+                </geometry>
+            </collision>
+            <visual name='node_link_2_1_visual'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <sphere>
+                    <radius>0.005</radius>
+                    </sphere>
+                </geometry>
+                <material>
+                    <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/Blue</name>
+                    </script>
+                </material>
+            </visual>
+        </link>
+
+    
+ 
+
+
+
+        <joint name='fixed_joint_0' type='fixed'>
+            <pose> 0 0 -0.495 0 0 0</pose>
+            <child>bar</child>
+            <parent> node_link_1_1</parent>
+        </joint>  
+
+
+
+        <joint name='fixed_joint_1' type='fixed'>
+            <pose> 0 0 -0.495 0 0 0</pose>
+            <child>bar</child>
+            <parent> node_link_2_1</parent>
+        </joint>
+
+
+        <link name ='attach_cable_1_left'>
+        <pose>-0.005 0 0.0 0 -1.57079632679 0.0</pose>
+        <inertial>
+        <pose>0 0 0 0 1.57079632679 0</pose>
+            <mass>0.005</mass>
+            <inertia>
+              <ixx>0.00010419791666666666</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy> 0.00010419791666666666 </iyy>
+              <iyz>0</iyz>
+              <izz> 6.250000000000001e-08</izz>
+            </inertia>
+        </inertial>
+        <visual name='attach_cable_1_left_visual'>
+            <pose>0 0 0.25  0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.5</length>
+                <radius>0.005</radius>
+              </cylinder>
+            </geometry>
+            <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/Red</name>
+                </script>
+            </material>
+        </visual>
+
+        <collision name='attach_cable_1_left_collision'>
+            <pose>0 0 0.25  0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.5</length>
+                <radius>0.005</radius>
+              </cylinder>
+            </geometry>
+        </collision>
+
+
+    </link>
+
+    <link name='attach_cable_1_right'>
+          <pose>-0.505 0 0.0 0 -1.57079632679 0.0</pose>
+          <inertial>
+          <pose>0 0 0 0 1.57079632679 0</pose>
+            <mass>0.005</mass>
+            <inertia>
+              <ixx>0.00010419791666666666</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy> 0.00010419791666666666 </iyy>
+              <iyz>0</iyz>
+              <izz> 6.250000000000001e-08</izz>
+            </inertia>
+          </inertial>
+          <visual name='attach_cable_1_right_visual'>
+            <pose>0 0 -0.25 0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.5</length>
+                <radius>0.005</radius>
+              </cylinder>
+            </geometry>
+            <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/RedBright</name>
+                </script>
+            </material>
+          </visual>
+
+          <collision name='attach_cable_1_right_collision'>
+            <pose>0 0 -0.25 0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.5</length>
+                <radius>0.005</radius>
+              </cylinder>
+            </geometry>
+          </collision>
+    </link>
+
+    <joint name='prismatic_attach_cable_1' type='prismatic'>
+        <child>attach_cable_1_left</child>
+        <parent>attach_cable_1_right</parent>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+            <xyz>0 0 1</xyz>
+            <limit>
+                <upper>0.5</upper>
+                <lower>-0.5</lower>
+            </limit>
+        </axis>
+    </joint>
+
+    <joint name='spherical_attach_cable_1' type='universal'>
+        <child>node_link_1_1</child>
+        <parent>attach_cable_1_right</parent>
+        <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+        </axis2>
+    </joint>
+
+        <link name ='attach_cable_2_left'>
+        <pose>1.005 0 0.0 0 1.57079632679 0.0</pose>
+        <inertial>
+        <pose>0 0 0 0 -1.57079632679 0</pose>
+            <mass>0.005</mass>
+            <inertia>
+              <ixx>0.00010419791666666666</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy> 0.00010419791666666666 </iyy>
+              <iyz>0</iyz>
+              <izz> 6.250000000000001e-08</izz>
+            </inertia>
+        </inertial>
+        <visual name='attach_cable_2_left_visual'>
+            <pose>0 0 0.25  0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.5</length>
+                <radius>0.005</radius>
+              </cylinder>
+            </geometry>
+            <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/Red</name>
+                </script>
+            </material>
+        </visual>
+
+        <collision name='attach_cable_2_left_collision'>
+            <pose>0 0 0.25  0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.5</length>
+                <radius>0.005</radius>
+              </cylinder>
+            </geometry>
+        </collision>
+
+
+    </link>
+
+    <link name='attach_cable_2_right'>
+          <pose>1.505 0 0.0 0 1.57079632679 0.0</pose>
+          <inertial>
+          <pose>0 0 0 0 -1.57079632679 0</pose>
+            <mass>0.005</mass>
+            <inertia>
+              <ixx>0.00010419791666666666</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy> 0.00010419791666666666 </iyy>
+              <iyz>0</iyz>
+              <izz> 6.250000000000001e-08</izz>
+            </inertia>
+          </inertial>
+          <visual name='attach_cable_2_right_visual'>
+            <pose>0 0 -0.25 0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.5</length>
+                <radius>0.005</radius>
+              </cylinder>
+            </geometry>
+            <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/RedBright</name>
+                </script>
+            </material>
+          </visual>
+
+          <collision name='attach_cable_2_right_collision'>
+            <pose>0 0 -0.25 0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length>0.5</length>
+                <radius>0.005</radius>
+              </cylinder>
+            </geometry>
+          </collision>
+    </link>
+
+    <joint name='prismatic_attach_cable_2' type='prismatic'>
+        <child>attach_cable_2_left</child>
+        <parent>attach_cable_2_right</parent>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+            <xyz>0 0 1</xyz>
+            <limit>
+                <upper>0.5</upper>
+                <lower>-0.5</lower>
+            </limit>
+        </axis>
+    </joint>
+
+    <joint name='spherical_attach_cable_2' type='universal'>
+        <child>node_link_2_1</child>
+        <parent>attach_cable_2_right</parent>
+        <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <axis2>
+          <xyz>0 1 0</xyz>
+        </axis2>
+    </joint>
+
+    <plugin name='cable_init' filename='libcable_init.so'>
+        <cable_length>0.005 </cable_length>
+    </plugin>
+
+
+  </model>
+</sdf>

@@ -1,0 +1,17 @@
+<library path="ls2n_rqt_thrust_estimator">
+    <class name="ThrustEstimator" type="ls2n_rqt_thrust_estimator.thrust_estimator.ThrustEstimator" base_class_type="rqt_gui_py::Plugin">
+        <description>
+            A plugin to estimate drone max thrust as a function of battery voltage.
+        </description>
+        <qtgui>
+            <group>
+                <label>LS2N</label>
+                <icon type="theme">folder</icon>
+                <statustip>LS2N Plugins</statustip>
+            </group>
+            <label>Thrust estimator</label>
+            <icon type="theme">utilities-system-monitor</icon>
+            <statustip>A plugin to estimate drone max thrust as a function of battery voltage.</statustip>
+        </qtgui>
+    </class>
+</library>

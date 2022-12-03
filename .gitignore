@@ -1,0 +1,4 @@
+__pycache__/
+.idea/
+cmake-build-debug/
+ls2n_fpr/FX29K_for_Arduino/arduino_secrets.h

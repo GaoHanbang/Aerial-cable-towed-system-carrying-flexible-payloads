@@ -1,0 +1,6 @@
+description: hovering for a single drone
+interpolation: none
+sampling: 0.0
+time    x       y       z       yaw
+0.0     0.0     0.0     1.5     0.0
+1.0     0.0     0.0     1.5     0.0

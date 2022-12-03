@@ -1,0 +1,5 @@
+#!/bin/sh
+# shellcheck disable=SC2154
+
+param set MAV_SYS_ID 1
+micrortps_client start -t UDP -r $((2019+2*px4_instance)) -s $((2020+2*px4_instance))

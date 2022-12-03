@@ -1,0 +1,17 @@
+<library path="ls2n_rqt_drone_observers">
+    <class name="DroneObservers" type="ls2n_rqt_drone_observers.drone_observers.DroneObservers" base_class_type="rqt_gui_py::Plugin">
+        <description>
+            A plugin to monitor UAV observers.
+        </description>
+        <qtgui>
+            <group>
+                <label>LS2N</label>
+                <icon type="theme">folder</icon>
+                <statustip>LS2N Plugins</statustip>
+            </group>
+            <label>Observers</label>
+            <icon type="theme">utilities-system-monitor</icon>
+            <statustip>A plugin to monitor UAV observers.</statustip>
+        </qtgui>
+    </class>
+</library>

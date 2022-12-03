@@ -1,0 +1,137 @@
+<sdf version='1.7'>
+  <model name='fpr'>
+    <link name="platform">
+        <pose>0 0 0.7375123727775691 0 0 0</pose>
+        <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+            <mass>0.215</mass>
+            <inertia>
+              <ixx>5.427e-4</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>5.427e-4</iyy>
+              <iyz>0</iyz>
+              <izz>0.001</izz>
+            </inertia>
+        </inertial>
+        <visual name="platform_visual">
+            <pose>0 0 0 0 -0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://flying_parallel_robot/meshes/platform.stl</uri>
+                </mesh>
+            </geometry>
+        </visual>
+        <gravity>1</gravity>
+    </link>
+    <link name="leg1">
+        <pose>0.48408892449920654 0 0.38042344827836255 0 0.7853981633974483 0</pose>
+        <inertial>
+            <pose>0.094 0 0 0 -0 0</pose>
+            <mass>0.073</mass>
+            <inertia>
+              <ixx>1.5707e-6</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>0.035</iyy>
+              <iyz>0</iyz>
+              <izz>0.035</izz>
+            </inertia>
+        </inertial>
+        <visual name="leg1_visual">
+            <pose>0 0 0 0 -0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://flying_parallel_robot/meshes/leg.stl</uri>
+                </mesh>
+            </geometry>
+        </visual>
+        <gravity>1</gravity>
+    </link>
+    <link name="leg2">
+        <pose>-0.24204446224960316 0.419233306307 0.38042344827836255 0 0.7853981633974483 2.0943951023931953</pose>
+        <inertial>
+            <pose>0.094 0 0 0 -0 0</pose>
+            <mass>0.073</mass>
+            <inertia>
+              <ixx>1.5707e-6</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>0.035</iyy>
+              <iyz>0</iyz>
+              <izz>0.035</izz>
+            </inertia>
+        </inertial>
+        <visual name="leg1_visual">
+            <pose>0 0 0 0 -0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://flying_parallel_robot/meshes/leg.stl</uri>
+                </mesh>
+            </geometry>
+        </visual>
+        <gravity>1</gravity>
+    </link>
+    <link name="leg3">
+        <pose>-0.24204446224960316 -0.419233306307 0.38042344827836255 0 0.7853981633974483 -2.0943951023931953</pose>
+        <inertial>
+            <pose>0.094 0 0 0 -0 0</pose>
+            <mass>0.073</mass>
+            <inertia>
+              <ixx>1.5707e-6</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>0.035</iyy>
+              <iyz>0</iyz>
+              <izz>0.035</izz>
+            </inertia>
+        </inertial>
+        <visual name="leg1_visual">
+            <pose>0 0 0 0 -0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>0.001 0.001 0.001</scale>
+                    <uri>model://flying_parallel_robot/meshes/leg.stl</uri>
+                </mesh>
+            </geometry>
+        </visual>
+        <gravity>1</gravity>
+    </link>
+    <joint name="revolute_leg_1" type="revolute">
+        <child>platform</child>
+        <parent>leg1</parent>
+        <pose>0.127 0 0</pose>
+        <axis>
+            <xyz>0 1 0</xyz>
+        </axis>
+    </joint>
+    <joint name="revolute_leg_2" type="revolute">
+        <child>platform</child>
+        <parent>leg2</parent>
+        <pose>-0.06349999999999997 0.10998522628062372 0</pose>
+        <axis>
+            <xyz>0.8660254037844387 0.4999999999999998 0</xyz>
+        </axis>
+    </joint>
+    <joint name="revolute_leg_3" type="revolute">
+        <child>platform</child>
+        <parent>leg3</parent>
+        <pose>-0.06349999999999997 -0.10998522628062372 0</pose>
+        <axis>
+            <xyz>0.8660254037844387 -0.4999999999999998 0</xyz>
+        </axis>
+    </joint>
+    <plugin name="gazebo_ros_p3d" filename="libgazebo_ros_p3d.so">
+        <ros>
+          <namespace>FPR/Mocap</namespace>
+        </ros>
+        <body_name>platform</body_name>
+        <update_rate>100</update_rate>
+        <frame_name>world</frame_name>
+    </plugin>
+    <plugin name='fpr_init' filename='libfpr_init.so'/>
+  </model>
+</sdf>

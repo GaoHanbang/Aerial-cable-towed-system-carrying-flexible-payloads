@@ -1,0 +1,7 @@
+drone_observer:
+  ros__parameters:
+    disturbances_broadcast: true # Broadcast observed disturbances in world frame.
+    # If false, the output will be sent to namesapce ObserveMonitor.
+    # If true, the output will be sent to namesapce Observer and be used by the drone
+    disturbances_gain: 2. # Observation gain for disturbances
+    max_thrust_gain: 0.5 # Observation gain for max thrust

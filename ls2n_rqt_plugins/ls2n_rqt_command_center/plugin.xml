@@ -1,0 +1,17 @@
+<library path="ls2n_rqt_command_center">
+    <class name="Command Center" type="ls2n_rqt_command_center.command_center.CommandCenter" base_class_type="rqt_gui_py::Plugin">
+        <description>
+            Command center for LS2N UAVs
+        </description>
+        <qtgui>
+            <group>
+                <label>LS2N</label>
+                <icon type="theme">folder</icon>
+                <statustip>LS2N Plugins</statustip>
+            </group>
+            <label>Command Center</label>
+            <icon type="theme">applications-engineering</icon>
+            <statustip>Command center for LS2N UAVs</statustip>
+        </qtgui>
+    </class>
+</library>

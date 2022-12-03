@@ -1,0 +1,9 @@
+description: hovering trajectory for the FPR
+interpolation: polynomial-7
+sampling: 0.005
+time    x       y       z       roll      pitch     yaw     leg1     leg2     leg3      
+0.0     0.0     0.0     0.95     0.0       0.0       0.0     0.785    0.785    0.785
+3.0     0.0     0.0     1.85     0.0       0.0       0.0     0.785    0.785    0.785
+5.0     0.0     0.0     1.85     0.0       0.0       0.0     0.785    0.785    0.785
+56.0    0.0     0.0     1.85     0.0       0.0       0.0     0.785    0.785    0.785
+60.0    0.0     0.0     0.95     0.0       0.0       0.0     0.785    0.785    0.785

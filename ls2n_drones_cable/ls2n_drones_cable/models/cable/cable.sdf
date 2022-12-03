@@ -1,0 +1,252 @@
+<sdf version='1.7'>
+  <model name='cable'>
+      
+
+    {% for segment in range(segment_count) %}
+    <selfCollide>false</selfCollide>
+    <link name="segment{{ segment + 1 }}_left">
+        <pose>{{ attach_cable_length/2.0 + segment*segment_length/2.0 + segment_length/4.0 }} 0 0.0 0 0 0</pose>
+        <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+            <mass>{{ segment_mass/2.0}}</mass>
+            <inertia>
+              <ixx>1e-5</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>1e-5</iyy>
+              <iyz>0</iyz>
+              <izz>1e-5</izz>
+            </inertia>
+        </inertial>
+        <collision name="segment{{ segment + 1 }}_left_collision">
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>{{ segment_length/2.0 }} 0.01 0.01</size>
+              </box>
+            </geometry>
+        </collision>
+        <visual name="segment{{ segment + 1 }}_left_visual">
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>{{ segment_length/2.0 }} 0.01 0.01</size>
+              </box>
+            </geometry>
+        </visual>
+        <gravity>1</gravity>
+    </link>
+    <link name="segment{{ segment + 1 }}_right">
+        <pose>{{ attach_cable_length/2.0 + segment*segment_length/2.0 + segment_length/4.0 }} 0 0.0 0 0 0.0</pose>
+        <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+            <mass>{{ segment_mass/2.0}}</mass>
+            <inertia>
+              <ixx>1e-5</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>1e-5</iyy>
+              <iyz>0</iyz>
+              <izz>1e-5</izz>
+            </inertia>
+        </inertial>
+        <collision name="segment{{ segment + 1 }}_right_collision">
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>{{ segment_length/2.0 }} 0.01 0.01</size>
+              </box>
+            </geometry>
+        </collision>
+        <visual name="segment{{ segment + 1 }}_right_visual">
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>{{ segment_length/2.0 }} 0.01 0.01</size>
+              </box>
+            </geometry>
+        </visual>
+        <gravity>1</gravity>
+    </link>
+    <joint name="prismatic_segment{{ segment + 1 }}" type="prismatic">
+        <child>segment{{ segment + 1 }}_left</child>
+        <parent>segment{{ segment + 1 }}_right</parent>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+            <xyz>1.0 0.0 0.0</xyz>
+            <limit>
+                <upper>{{ segment_length/2.0 }}</upper>
+                <lower>-{{ segment_length/2.0 }}</lower>
+            </limit>
+        </axis>
+    </joint>
+    {% endfor %}
+
+    {% for segment in range(segment_count-1) %}
+    <joint name="spherical_segment{{ segment + 1 }}" type="universal">
+        <child>segment{{ segment + 1 }}_right</child>
+        <parent>segment{{ segment + 2 }}_left</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+        <axis2>
+          <xyz>1 0 0</xyz>
+        </axis2>
+        <pose>{{ segment_length/4.0 }} 0 0.0</pose>
+    </joint>
+    {% endfor %}
+
+    <link name="attach_cable_1_left">
+        <pose>0 0 0.0 0 0 0.0</pose>
+        <inertial>
+        <pose>0 0 0 0 0 0</pose>
+            <mass>{{ attach_cable_mass/2.0}}</mass>
+            <inertia>
+              <ixx>1e-5</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>1e-5</iyy>
+              <iyz>0</iyz>
+              <izz>1e-5</izz>
+            </inertia>
+        </inertial>
+        <visual name="attach_cable_1_left_visual">
+            <pose>{{ attach_cable_length/4.0 }} 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>{{ attach_cable_length/2.0 }} 0.005 0.005</size>
+              </box>
+            </geometry>
+        </visual>
+        <gravity>1</gravity>
+    </link>
+    <link name="attach_cable_1_right">
+          <pose>{{ attach_cable_length/2.0 }} 0 0.0 0 0 0.0</pose>
+          <inertial>
+          <pose>0 0 0 0 0 0</pose>
+              <mass>{{ attach_cable_mass/2.0}}</mass>
+              <inertia>
+                <ixx>1e-5</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1e-5</iyy>
+                <iyz>0</iyz>
+                <izz>1e-5</izz>
+              </inertia>
+          </inertial>
+          <visual name="attach_cable_1_right_visual">
+              <pose>{{ -attach_cable_length/4.0 }} 0 0 0 0 0</pose>
+              <geometry>
+                <box>
+                  <size>{{ attach_cable_length/2.0 }} 0.005 0.005</size>
+                </box>
+              </geometry>
+          </visual>
+          <gravity>1</gravity>
+    </link>
+    <joint name="prismatic_attach_cable_1" type="prismatic">
+        <child>attach_cable_1_left</child>
+        <parent>attach_cable_1_right</parent>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+            <xyz>1.0 0.0 0.0</xyz>
+            <limit>
+                <upper>{{ attach_cable_length/2.0 }}</upper>
+                <lower>-{{ attach_cable_length/2.0 }}</lower>
+            </limit>
+        </axis>
+    </joint>
+
+    <joint name="spherical_attach_cable_1" type="universal">
+        <child>attach_cable_1_right</child>
+        <parent>segment1_left</parent>
+        <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+        <axis2>
+          <xyz>1 0 0</xyz>
+        </axis2>
+    </joint>
+
+    <link name="attach_cable_2_left">
+        <pose>{{ attach_cable_length/2.0 + segment_count*segment_length/2.0 }} 0 0.0 0 0 0.0</pose>
+        <inertial>
+        <pose>0 0 0 0 0 0</pose>
+            <mass>{{ attach_cable_mass/2.0}}</mass>
+            <inertia>
+              <ixx>1e-5</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>1e-5</iyy>
+              <iyz>0</iyz>
+              <izz>1e-5</izz>
+            </inertia>
+        </inertial>
+        <visual name="attach_cable_2_left_visual">
+            <pose>{{ attach_cable_length/4.0 }} 0 0 0 0 0</pose>
+            <geometry>
+              <box>
+                <size>{{ attach_cable_length/2.0 }} 0.005 0.005</size>
+              </box>
+            </geometry>
+        </visual>
+        <gravity>1</gravity>
+    </link>
+    <link name="attach_cable_2_right">
+          <pose>{{ attach_cable_length + segment_count*segment_length/2.0 }} 0 0.0 0 0 0.0</pose>
+          <inertial>
+          <pose>0 0 0 0 0 0</pose>
+              <mass>{{ attach_cable_mass/2.0}}</mass>
+              <inertia>
+                <ixx>1e-5</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>1e-5</iyy>
+                <iyz>0</iyz>
+                <izz>1e-5</izz>
+              </inertia>
+          </inertial>
+          <visual name="attach_cable_2_right_visual">
+              <pose>{{ -attach_cable_length/4.0 }} 0 0 0 0 0</pose>
+              <geometry>
+                <box>
+                  <size>{{ attach_cable_length/2.0 }} 0.005 0.005</size>
+                </box>
+              </geometry>
+          </visual>
+          <gravity>1</gravity>
+    </link>
+    <joint name="prismatic_attach_cable_2" type="prismatic">
+        <child>attach_cable_2_left</child>
+        <parent>attach_cable_2_right</parent>
+        <pose>0 0 0 0 0 0</pose>
+        <axis>
+            <xyz>1.0 0.0 0.0</xyz>
+            <limit>
+                <upper>{{ attach_cable_length/2.0 }}</upper>
+                <lower>-{{ attach_cable_length/2.0 }}</lower>
+            </limit>
+        </axis>
+    </joint>
+
+    <joint name="spherical_attach_cable_2" type="universal">
+        <child>attach_cable_2_left</child>
+        <parent>segment{{ segment_count }}_right</parent>
+        <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+        <axis2>
+          <xyz>1 0 0</xyz>
+        </axis2>
+    </joint>
+
+    <plugin name='cable_init' filename='libcable_init.so'>
+        <cable_length>{{ attach_cable_length + segment_length/2.0 * segment_count }}</cable_length>
+    </plugin>
+    
+    
+
+  </model>
+</sdf>

@@ -1,0 +1,5 @@
+# Use this configuration file to activate onboard nodes in addition to the bridge.
+# Works both for real drone and SITL simulation.
+observers: true
+position_control: false
+velocity_joystick_control: false

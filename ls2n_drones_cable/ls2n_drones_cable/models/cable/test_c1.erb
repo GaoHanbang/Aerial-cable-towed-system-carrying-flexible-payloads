@@ -1,0 +1,646 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+<model name='cable'>
+    
+    
+ <%
+  # Units for the dimensions of the snake
+  # SI units (length in meters)
+
+  # Geometry net parameter
+
+  number_of_width  = 3
+  number_of_length = 1
+  length_of_mesh = 0.5
+  width_of_mesh =  0.5  
+  length_of_net = (number_of_length-1) * length_of_mesh
+  width_of_net = (number_of_width-1) * width_of_mesh
+  # Geometry model shape parameter
+  
+  node_radius      = 0.005
+  body_radius      = node_radius
+  number_of_bodies = 4  
+  body_length      = 16*(width_of_mesh - 2*node_radius)/100
+  aux_body_length  = 5*(width_of_mesh - 2*node_radius)/100
+
+  # Mass and Inertia
+  total_mass_net = 1
+  body_mass = 0.0588
+  # body_mass =  total_mass_net /（2*number_of_width*number_of_length - number_of_length - number_of_width）
+  body_ixx    = body_mass * (body_radius**2 / 4.0 + body_length**2 / 12.0)
+  body_iyy    = body_mass * (body_radius**2 / 4.0 + body_length**2 / 12.0)
+  body_izz    = body_mass/2.0 * body_radius**2
+
+  aux_body_mass   = 0.001
+  aux_body_ixx    = aux_body_mass * (body_radius**2 / 4.0 + aux_body_length**2 / 12.0)
+  aux_body_iyy    = aux_body_mass * (body_radius**2 / 4.0 + aux_body_length**2 / 12.0)
+  aux_body_izz    = aux_body_mass/2.0 * body_radius**2
+
+  node_mass = 0.001
+  node_ixx = 0.4* node_mass * node_radius**2
+  node_iyy = 0.4* node_mass * node_radius**2
+  node_izz = 0.4* node_mass * node_radius**2
+  
+  # parameter of cable: must modify parameter together
+  cable_mass = 0.1
+  cable_length = 0.5
+  cable_radius = 0.005
+  cable_ixx = cable_mass * (cable_radius**2 / 4.0 + cable_length**2 / 12.0)
+  cable_iyy = cable_mass * (cable_radius**2 / 4.0 + cable_length**2 / 12.0)
+  cable_izz = cable_mass/2.0 * cable_radius**2
+
+
+  # Activate SelfColide
+  bar_self_collide_activate = 1
+  node_self_collide_activate = 0
+  aux_self_collide_activate = 0
+  enable_wind_activate = 0
+  # Box size  
+  test_box = 1
+  box_size = 0.4
+
+ %>
+
+
+ <% for i in 1..number_of_width %>
+    <% for j in 1..number_of_length %>
+        <link name='node_link_<%=i%>_<%=j%>'>
+            <self_collide><%= node_self_collide_activate %></self_collide>
+            <pose> <%= width_of_mesh*(i-1) %> <%= length_of_mesh*(j-1) %> 0 0 0 0 </pose>
+            <inertial>
+                <pose>0 0 0 0 -0 0</pose>
+                <mass><%= node_mass %></mass>
+                <inertia>
+                    <ixx><%= node_ixx %></ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy><%= node_iyy %></iyy>
+                    <iyz>0</iyz>
+                    <izz><%= node_izz %></izz>
+                </inertia>
+            </inertial>
+            <collision name='node_link_<%=i%>_<%=j%>_collision'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <sphere>
+                    <radius><%= node_radius %></radius>
+                    </sphere>
+                </geometry>
+            </collision>
+            <visual name='node_link_<%=i%>_<%=j%>_visual'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <sphere>
+                    <radius><%= node_radius %></radius>
+                    </sphere>
+                </geometry>
+                <material>
+                    <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/Blue</name>
+                    </script>
+                </material>
+            </visual>
+        </link>
+
+    <% end %>
+ <% end %>
+
+ <% # start of vertical bars%>
+
+ <% for i in 1..number_of_width-1 %>
+    <% for j in 1..number_of_length %>
+        <link name='body_link_<%= i%>_<%= j%>_0'>
+            <self_collide><%= bar_self_collide_activate %></self_collide>
+            <pose> <%= width_of_mesh*(i-1) + node_radius+ body_length/2.0%> <%= length_of_mesh*(j-1)%> 0 0 -1.57079632679 0</pose>
+            <inertial>
+                <pose>0 0 0 0 1.57079632679 0</pose>
+                <mass><%= body_mass %></mass>
+                <inertia>
+                <ixx><%= body_ixx %></ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy><%= body_iyy %></iyy>
+                <iyz>0</iyz>
+                <izz><%= body_izz %></izz>
+                </inertia>
+            </inertial>
+            <collision name='base_link_collision_<%= i%>_<%= j%>_0'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                <cylinder>
+                    <length><%= body_length %></length>
+                    <radius><%= body_radius %></radius>
+                </cylinder>
+                </geometry>
+            </collision>
+            <visual name='base_link_visual_<%= i%>_<%= j%>_0'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                <cylinder>
+                    <length><%= body_length %></length>
+                    <radius><%= body_radius %></radius>
+                </cylinder>
+                </geometry>
+                <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/White</name>
+                </script>
+                </material>
+            </visual>
+        </link>
+
+        <joint name='fixed_<%= i%>_<%= j%>_joint_0' type='fixed'>
+            <pose> 0 0 <%= body_length/2.0%> 0 0 0</pose>
+            <child> body_link_<%= i%>_<%= j%>_0</child>
+            <parent> node_link_<%= i%>_<%= j%></parent>
+        </joint>  
+
+        <% for k in 1..number_of_bodies %>
+
+            <link name='aux_body_link_<%= i%>_<%= j%>_<%=k%>'>
+                <self_collide><%= aux_self_collide_activate%></self_collide>
+                <pose><%= width_of_mesh*(i-1)+node_radius+body_length/2.0+(2*k-1)*(body_length+aux_body_length)/2.0 %>  <%= length_of_mesh*(j-1)%> 0  0 -1.57079632679 0</pose>
+                <inertial>
+                    <pose>0 0 0 0 1.57079632679 0</pose>
+                    <mass><%= aux_body_mass %></mass>
+                    <inertia>
+                    <ixx><%= aux_body_ixx %></ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy><%= aux_body_iyy %></iyy>
+                    <iyz>0</iyz>
+                    <izz><%= aux_body_izz %></izz>
+                    </inertia>
+                </inertial>
+
+                <collision name='aux_body_link_<%= i%>_<%= j%>_<%=k%>_collision'>
+                    <pose>0 0 0 0 -0 0</pose>
+                    <geometry>
+                    <cylinder>
+                        <length><%= aux_body_length %></length>
+                        <radius><%= body_radius %></radius>
+                    </cylinder>
+                    </geometry>
+                </collision>
+                <visual name='aux_body_link_<%= i%>_<%= j%>_<%=k%>_visual'>
+                    <pose>0 0 0 0 -0 0</pose>
+                    <geometry>
+                    <cylinder>
+                        <length><%= aux_body_length %></length>
+                        <radius><%= body_radius %></radius>
+                    </cylinder>
+                    </geometry>
+                    <material>
+                    <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/Black</name>
+                    </script>
+                    </material>
+                </visual>
+            </link>
+
+            <joint name='aux_body_link_<%= i%>_<%= j%>_<%=k%>_joint' type='universal'>
+                <pose>0 0 <%= aux_body_length/2.0 %> 0 0 0</pose>
+                <child>aux_body_link_<%= i%>_<%= j%>_<%=k%></child>
+                <parent>body_link_<%= i%>_<%= j%>_<%=k-1%></parent>
+                <axis>
+                    <xyz>1 0 0</xyz>
+                    <limit>
+                    <lower>-0.785398</lower>
+                    <upper>0.785398</upper>
+                    <effort>20</effort>
+                    <velocity>2</velocity>
+                    </limit>
+                </axis>
+
+                <axis2>
+                    <xyz>0 1 0</xyz>
+                    <limit>
+                    <lower>-0.785398</lower>
+                    <upper>0.785398</upper>
+                    <effort>20</effort>
+                    <velocity>2</velocity>
+                    </limit>
+                </axis2>
+
+            </joint>
+            
+            
+            <% #start of another type of joint %>
+            <link name='body_link_<%= i%>_<%= j%>_<%=k%>'>
+                <self_collide><%= bar_self_collide_activate %></self_collide>
+                <pose><%= width_of_mesh*(i-1)+node_radius+body_length/2.0+k*(body_length+aux_body_length) %> <%= length_of_mesh*(j-1)%> 0 0 -1.57079632679 0</pose>
+                <inertial>
+                    <pose>0 0 0 0 1.57079632679 0</pose>
+                    <mass><%= body_mass %></mass>
+                    <inertia>
+                    <ixx><%= body_ixx %></ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy><%= body_iyy %></iyy>
+                    <iyz>0</iyz>
+                    <izz><%= body_izz %></izz>
+                    </inertia>
+                </inertial>
+                <collision name='body_link_<%= i%>_<%= j%>_<%=k%>_collision'>
+                    <pose>0 0 0 0 -0 0</pose>
+                    <geometry>
+                    <cylinder>
+                        <length><%= body_length %></length>
+                        <radius><%= body_radius %></radius>
+                    </cylinder>
+                    </geometry>
+                </collision>
+                <visual name='body_link_<%= i%>_<%= j%>_<%=k%>_visual'>
+                    <pose>0 0 0 0 -0 0</pose>
+                    <geometry>
+                    <cylinder>
+                        <length><%= body_length %></length>
+                        <radius><%= body_radius %></radius>
+                    </cylinder>
+                    </geometry>
+                    <material>
+                    <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/White</name>
+                    </script>
+                    </material>
+                </visual>
+                </link>
+                
+                <joint name='body_link_<%= i%>_<%= j%>_<%=k%>_joint' type='universal'>
+                    <pose>0 0 <%= body_length/2.0 %> 0 0 0</pose>
+                <child>body_link_<%= i%>_<%= j%>_<%=k%></child>
+                <parent>aux_body_link_<%= i%>_<%= j%>_<%=k%></parent>
+
+                <axis>
+                    <xyz>0 1 0</xyz>
+                    <limit>
+                    <lower>-0.785398</lower>
+                    <upper>0.785398</upper>
+                    <effort>20</effort>
+                    <velocity>2</velocity>
+                    </limit>
+                </axis>
+
+                <axis2>
+                    <xyz>1 0 0</xyz>
+                    <limit>
+                    <lower>-0.785398</lower>
+                    <upper>0.785398</upper>
+                    <effort>20</effort>
+                    <velocity>2</velocity>
+                    </limit>
+                </axis2>
+
+                </joint>
+                
+            
+
+        <% end %>
+
+        <joint name='fixed_<%= i%>_<%= j%>_joint_1' type='fixed'>
+            <pose> 0 0 <%= -body_length/2.0%> 0 0 0</pose>
+            <child>body_link_<%= i%>_<%= j%>_<%= number_of_bodies%></child>
+            <parent> node_link_<%= i+1%>_<%= j%></parent>
+        </joint>
+
+
+
+    <% end %>
+<% end %>
+
+
+
+ <% # start of horizontal bars%>
+
+ <% for i in 1..number_of_width %>
+    <% for j in 1..number_of_length - 1 %>
+        <link name='_body_link_<%= i%>_<%= j%>_0'>
+            <self_collide><%= bar_self_collide_activate %></self_collide>
+            <pose> <%= width_of_mesh*(i-1) %> <%= length_of_mesh*(j-1)+ node_radius+ body_length/2.0%> 0 -1.57079632679 0 0</pose>
+            <inertial>
+                <pose>0 0 0 1.57079632679 0 0</pose>
+                <mass><%= body_mass %></mass>
+                <inertia>
+                <ixx><%= body_ixx %></ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy><%= body_iyy %></iyy>
+                <iyz>0</iyz>
+                <izz><%= body_izz %></izz>
+                </inertia>
+            </inertial>
+            <collision name='_base_link_collision_<%= i%>_<%= j%>_0'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                <cylinder>
+                    <length><%= body_length %></length>
+                    <radius><%= body_radius %></radius>
+                </cylinder>
+                </geometry>
+            </collision>
+            <visual name='_base_link_visual_<%= i%>_<%= j%>_0'>
+                <pose>0 0 0 0 -0 0</pose>
+                <geometry>
+                <cylinder>
+                    <length><%= body_length %></length>
+                    <radius><%= body_radius %></radius>
+                </cylinder>
+                </geometry>
+                <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/White</name>
+                </script>
+                </material>
+            </visual>
+        </link>
+
+        <joint name='_fixed_<%= i%>_<%= j%>_joint_0' type='fixed'>
+            <pose> 0 0 <%= -body_length/2.0%> 0 0 0</pose>
+            <child>_body_link_<%= i%>_<%= j%>_0</child>
+            <parent> node_link_<%= i%>_<%= j%></parent>
+        </joint>  
+
+        <% for k in 1..number_of_bodies %>
+
+            <link name='_aux_body_link_<%= i%>_<%= j%>_<%=k%>'>
+                <self_collide><%= aux_self_collide_activate%></self_collide>
+                <pose><%= width_of_mesh*(i-1)%>  <%= length_of_mesh*(j-1)+node_radius+body_length/2.0+(2*k-1)*(body_length+aux_body_length)/2.0%> 0  -1.57079632679 0 0</pose>
+                <inertial>
+                    <pose>0 0 0 1.57079632679 0 0</pose>
+                    <mass><%= aux_body_mass %></mass>
+                    <inertia>
+                    <ixx><%= aux_body_ixx %></ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy><%= aux_body_iyy %></iyy>
+                    <iyz>0</iyz>
+                    <izz><%= aux_body_izz %></izz>
+                    </inertia>
+                </inertial>
+
+                <collision name='_aux_body_link_<%= i%>_<%= j%>_<%=k%>_collision'>
+                    <pose>0 0 0 0 -0 0</pose>
+                    <geometry>
+                    <cylinder>
+                        <length><%= aux_body_length %></length>
+                        <radius><%= body_radius %></radius>
+                    </cylinder>
+                    </geometry>
+                </collision>
+                <visual name='_aux_body_link_<%= i%>_<%= j%>_<%=k%>_visual'>
+                    <pose>0 0 0 0 -0 0</pose>
+                    <geometry>
+                    <cylinder>
+                        <length><%= aux_body_length %></length>
+                        <radius><%= body_radius %></radius>
+                    </cylinder>
+                    </geometry>
+                    <material>
+                    <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/Black</name>
+                    </script>
+                    </material>
+                </visual>
+            </link>
+            
+            
+            <joint name='_aux_body_link_<%= i%>_<%= j%>_<%=k%>_joint' type='universal'>
+                <pose>0 0 -<%= aux_body_length/2.0 %> 0 0 0</pose>
+                <child>_aux_body_link_<%= i%>_<%= j%>_<%=k%></child>
+                <parent>_body_link_<%= i%>_<%= j%>_<%=k-1%></parent>
+                <axis>
+                    <xyz>1 0 0</xyz>
+                    <limit>
+                    <lower>-0.785398</lower>
+                    <upper>0.785398</upper>
+                    <effort>20</effort>
+                    <velocity>2</velocity>
+                    </limit>
+                </axis>
+
+                <axis2>
+                    <xyz>0 1 0</xyz>
+                    <limit>
+                    <lower>-0.785398</lower>
+                    <upper>0.785398</upper>
+                    <effort>20</effort>
+                    <velocity>2</velocity>
+                    </limit>
+                </axis2>
+            </joint>
+
+            <% #start of another type of joint %>
+            <link name='_body_link_<%= i%>_<%= j%>_<%=k%>'>
+                <self_collide><%= bar_self_collide_activate %></self_collide>
+                <pose><%= width_of_mesh*(i-1)%> <%= length_of_mesh*(j-1)+node_radius+body_length/2.0+k*(body_length+aux_body_length) %> 0 -1.57079632679 0 0</pose>
+                <inertial>
+                    <pose>0 0 0 1.57079632679 0 0</pose>
+                    <mass><%= body_mass %></mass>
+                    <inertia>
+                    <ixx><%= body_ixx %></ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy><%= body_iyy %></iyy>
+                    <iyz>0</iyz>
+                    <izz><%= body_izz %></izz>
+                    </inertia>
+                </inertial>
+                <collision name='_body_link_<%= i%>_<%= j%>_<%=k%>_collision'>
+                    <pose>0 0 0 0 -0 0</pose>
+                    <geometry>
+                    <cylinder>
+                        <length><%= body_length %></length>
+                        <radius><%= body_radius %></radius>
+                    </cylinder>
+                    </geometry>
+                </collision>
+                <visual name='_body_link_<%= i%>_<%= j%>_<%=k%>_visual'>
+                    <pose>0 0 0 0 -0 0</pose>
+                    <geometry>
+                    <cylinder>
+                        <length><%= body_length %></length>
+                        <radius><%= body_radius %></radius>
+                    </cylinder>
+                    </geometry>
+                    <material>
+                    <script>
+                        <uri>file://media/materials/scripts/gazebo.material</uri>
+                        <name>Gazebo/White</name>
+                    </script>
+                    </material>
+                </visual>
+                </link>
+                
+                
+                <joint name='_body_link_<%= i%>_<%= j%>_<%=k%>_joint' type='universal'>
+                <pose>0 0 -<%= body_length/2.0 %> 0 0 0</pose>
+                <child>_body_link_<%= i%>_<%= j%>_<%=k%></child>
+                <parent>_aux_body_link_<%= i%>_<%= j%>_<%=k%></parent>
+
+                <axis>
+                    <xyz>0 1 0</xyz>
+                    <limit>
+                    <lower>-0.785398</lower>
+                    <upper>0.785398</upper>
+                    <effort>20</effort>
+                    <velocity>2</velocity>
+                    </limit>
+                </axis>
+
+                <axis2>
+                    <xyz>1 0 0</xyz>
+                    <limit>
+                    <lower>-0.785398</lower>
+                    <upper>0.785398</upper>
+                    <effort>20</effort>
+                    <velocity>2</velocity>
+                    </limit>
+                </axis2>
+                
+                </joint>
+
+
+        <% end %>
+
+        <joint name='_fixed_<%= i%>_<%= j%>_joint_1' type='fixed'>
+            <pose> 0 0 <%= body_length/2.0%> 0 0 0</pose>
+            <child>_body_link_<%= i%>_<%= j%>_<%= number_of_bodies%></child>
+            <parent> node_link_<%= i%>_<%= j+1%></parent>
+        </joint>
+
+
+
+    <% end %>
+<% end %>
+
+
+
+
+    <% #Start of Cable_1 %>
+
+
+    <link name='attach_cable_1_right'>
+          <pose><%= -node_radius-cable_length/2.0%> 0 0.0 0 -1.57079632679 0.0</pose>
+          <inertial>
+          <pose>0 0 0 0 1.57079632679 0</pose>
+            <mass><%= cable_mass%></mass>
+            <inertia>
+              <ixx><%= cable_ixx%></ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy> <%= cable_iyy%> </iyy>
+              <iyz>0</iyz>
+              <izz> <%= cable_izz%></izz>
+            </inertia>
+          </inertial>
+
+          <visual name='attach_cable_1_right_visual'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length><%= cable_length %></length>
+                <radius><%= cable_radius %></radius>
+              </cylinder>
+            </geometry>
+            <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/Red</name>
+                </script>
+            </material>
+          </visual>
+
+          <collision name='attach_cable_1_right_collision'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length><%= cable_length %></length>
+                <radius><%= cable_radius %></radius>
+              </cylinder>
+            </geometry>
+          </collision>
+    </link>
+
+
+    <joint name='spherical_attach_cable_1' type='universal'>
+        <child>node_link_1_1</child>
+        <parent>attach_cable_1_right</parent>
+        <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+        <axis2>
+          <xyz>0 0 1</xyz>
+        </axis2>
+    </joint>
+
+    <% #Start of cable_2 %>
+
+
+    <link name='attach_cable_2_right'>
+          <pose><%= width_of_net+node_radius+cable_length/2.0%> 0 0.0 0 1.57079632679 0.0</pose>
+          <inertial>
+          <pose>0 0 0 0 -1.57079632679 0</pose>
+            <mass><%= cable_mass%></mass>
+            <inertia>
+              <ixx><%= cable_ixx%></ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy> <%= cable_iyy%> </iyy>
+              <iyz>0</iyz>
+              <izz> <%= cable_izz%></izz>
+            </inertia>
+          </inertial>
+          <visual name='attach_cable_2_right_visual'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length><%= cable_length %></length>
+                <radius><%= cable_radius %></radius>
+              </cylinder>
+            </geometry>
+            <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/Red</name>
+                </script>
+            </material>
+          </visual>
+
+          <collision name='attach_cable_2_right_collision'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <length><%= cable_length %></length>
+                <radius><%= cable_radius %></radius>
+              </cylinder>
+            </geometry>
+          </collision>
+    </link>
+
+
+    <joint name='spherical_attach_cable_2' type='universal'>
+        <child>node_link_<%= number_of_width%>_1</child>
+        <parent>attach_cable_2_right</parent>
+        <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+        <axis>
+          <xyz>0 0 1</xyz>
+        </axis>
+        <axis2>
+          <xyz>0 1 0</xyz>
+        </axis2>
+    </joint>
+
+
+    <plugin name='cable_init' filename='libcable_init.so'>
+        <cable_length><%= cable_length + node_radius %> </cable_length>
+    </plugin>
+
+  </model>
+</sdf>

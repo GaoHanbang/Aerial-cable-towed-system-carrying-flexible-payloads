@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FakeJoystick</class>
+ <widget class="QWidget" name="FakeJoystick">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>180</width>
+    <height>190</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Fake Joystick</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="margin" stdset="0">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="Hlayout1" stretch="5,10,3">
+     <property name="spacing">
+      <number>1</number>
+     </property>
+     <property name="margin" stdset="0">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QCheckBox" name="keep_alive_cb">
+       <property name="text">
+        <string>Keep Alive</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Hlayout2">
+     <item>
+      <widget class="QPushButton" name="stop_experiment_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Stop Experiment</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="start_experiment_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Start Experiment</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Hlayout3">
+     <item>
+      <widget class="QPushButton" name="spin_motors_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Spin Motors</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

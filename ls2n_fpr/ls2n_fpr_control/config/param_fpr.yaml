@@ -1,0 +1,68 @@
+/**:
+  ros__parameters:
+    basic_param:
+      l_leg: 1.043 # leg's length
+      r_p: 0.117  # platform's radius (from center to revolute joint)
+      mass_p: 0.291 # platform mass
+      mass_leg: 0.066 # leg mass
+      sx_leg: 0.599 # leg COM position
+      xx_p: 5.427e-4 # platform moment of inertia
+      yy_p: 5.427e-4
+      zz_p: 0.001
+      xx_leg: 1.5707e-06 # leg moment of inertia
+      yy_leg: 0.035
+      zz_leg: 0.035
+
+    drone_param:
+      drone0:
+        num: 7
+        angle: -45.0  # angle offset between MAVROS x-axis and leg's direction around MAVROS z-axis (degrees, positive in CCW direction)
+      drone1:
+        num: 6
+        angle: -45.0
+      drone2:
+        num: 5
+        angle: -45.0
+
+    control_param:
+      type: 'impedance' # 'pd', 'pid' or 'impedance'
+      pid_gains:
+        position: # position of the platform
+          kp_xy: 4.0 # proportional gain on x,y axis
+          kp_z: 4.0 #                   on z axis
+          kd_xy: 3.0 # derivative gain on x,y axis
+          kd_z: 3.0 #                 on z axis
+          ki_xy: 0.01 # integral gain on x,y axis
+          ki_z: 0.01 #                on z axis
+        orientation: # orientation of the platform
+          kp_xy: 6.0 # proportional gain about x,y axis
+          kp_z: 6.0  #                   about z axis
+          kd_xy: 3.0 # derivative gain about x,y axis
+          kd_z: 3.0 #                 about z axis
+          ki_xy: 0.01
+          ki_z: 0.01
+        leg_angle: # leg angles
+          kp_l: 4.0 # idem on leg's angle
+          kd_l: 3.0
+          ki_l: 0.01
+      impedance_gains: # impedance gains
+        mv_p: 5.0 # mass (position)
+        dv_p: 10.0 # damping
+        kv_p: 25.0 # spring
+        mv_o: 8.0 # mass (orientation)
+        dv_o: 25.0 # damping
+        kv_o: 25.0 # spring
+        mv_l: 5.0 # mass (legs)
+        dv_l: 20.0 # damping
+        kv_l: 15.0 # spring
+
+    observation_param:
+      external_wrench:
+        enable: true # enable external wrench observer
+        gains: # external wrench observer
+          k_p: 2.0
+          k_o: 1.0
+          k_l: 1.0
+
+    logs_folder: "/home/user/logs/fpr"
+    interaction_experiment: false  # boolean for starting interaction experiment

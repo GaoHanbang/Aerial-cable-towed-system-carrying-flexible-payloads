@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# @name LS2N Crazy2Fly quadrotor
+#
+# @type + Quadrotor +
+#
+# @maintainer Damien Six <damien.six@ls2n.fr>
+#
+
+. ${R}etc/init.d/rc.mc_defaults
+. ${R}etc/init.d-posix/rc.mc_simulation_ls2n
+
+
+param set MC_ROLLRATE_K 1.8
+param set MC_ROLLRATE_D 0.002
+param set MC_ROLLRATE_I 0.500
+param set MC_ROLLRATE_P 0.15
+param set MC_ROLL_P 10.0
+param set MC_PITCHRATE_K 1.8
+param set MC_PITCHRATE_D 0.002
+param set MC_PITCHRATE_I 0.500
+param set MC_PITCHRATE_P 0.15
+param set MC_PITCH_P 10.0
+param set MC_YAWRATE_K 3.5
+param set MC_YAWRATE_D 0.002
+param set MC_YAWRATE_I 0.1
+param set MC_YAWRATE_P 0.2
+param set MC_YAW_P 5.0
+param set MC_PITCHRATE_MAX 1800.0
+param set MC_ROLLRATE_MAX 1800.0
+param set MC_YAWRATE_MAX 1800.0
+param set MPC_THR_HOVER 0.2
+
+set MIXER quad_+
